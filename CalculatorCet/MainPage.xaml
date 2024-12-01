@@ -1,87 +1,98 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+﻿<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="CalculatorCet.MainPage">
 
     <ScrollView>
-        <VerticalStackLayout
-            Padding="30,0"
-            Spacing="25">
-            <Entry HorizontalOptions="Start" x:Name="Display" Keyboard="Numeric" WidthRequest="300"></Entry>
+        <VerticalStackLayout Padding="20,10" Spacing="10" BackgroundColor="Black">
 
+            <!-- Başlık -->
+            <Label 
+                Text="Hesap Makinesi"
+                FontSize="24"
+                HorizontalOptions="Center"
+                TextColor="White" />
+
+            <!-- Display -->
+            <Entry 
+    HorizontalOptions="FillAndExpand" 
+    x:Name="Display" 
+    FontSize="24" 
+    TextChanged="Display_TextChanged" 
+    Keyboard="Numeric" />
+
+
+                <!-- Hafıza İşlemleri -->
+            <Grid ColumnSpacing="5" RowSpacing="5" Padding="0,5,0,10">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="50" />
+                </Grid.RowDefinitions>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <Button Text="MC" x:Name="MCButton" Clicked="MCButton_Clicked" Grid.Row="0" Grid.Column="0" TextColor="White" BackgroundColor="#2D2D30" />
+                <Button Text="MR" x:Name="MRButton" Clicked="MRButton_Clicked" Grid.Row="0" Grid.Column="1" TextColor="White" BackgroundColor="#2D2D30" />
+                <Button Text="M+" x:Name="MPlusButton" Clicked="MPlusButton_Clicked" Grid.Row="0" Grid.Column="2" TextColor="White" BackgroundColor="#2D2D30" />
+                <Button Text="M-" x:Name="MMinusButton" Clicked="MMinusButton_Clicked" Grid.Row="0" Grid.Column="3" TextColor="White" BackgroundColor="#2D2D30" />
+                <Button Text="MS" x:Name="MSButton" Clicked="MSButton_Clicked" Grid.Row="0" Grid.Column="4" TextColor="White" BackgroundColor="#2D2D30" />
+            </Grid>
+
+            <!-- Tuşlar -->
             <Grid ColumnSpacing="5" RowSpacing="5">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="60"></RowDefinition>
-                    <RowDefinition Height="60"></RowDefinition>
-                    <RowDefinition Height="60"></RowDefinition>
-                    <RowDefinition Height="60"></RowDefinition>
-                    <RowDefinition Height="60">
-                    </RowDefinition>
+                    <RowDefinition Height="60" />
+                    <RowDefinition Height="60" />
+                    <RowDefinition Height="60" />
+                    <RowDefinition Height="60" />
+                    <RowDefinition Height="60" />
+                    <RowDefinition Height="60" />
                 </Grid.RowDefinitions>
+
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="60"></ColumnDefinition>
-                    <ColumnDefinition Width="60"></ColumnDefinition>
-                    <ColumnDefinition Width="60"></ColumnDefinition>
-                    <ColumnDefinition Width="60"></ColumnDefinition>
-
-
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
-                <Button Text="7" x:Name="DigitSeven" Clicked="Digit_Clicked" ></Button>
-                <Button Text="8" x:Name="DigitEight" Clicked="Digit_Clicked" Grid.Column="1" ></Button>
-                <Button Text="9" x:Name="DigitNine"  Clicked="Digit_Clicked" Grid.Column="2"></Button>
 
+                <!-- İlk Satır -->
+                <Button Text="%" x:Name="PercentButton" Clicked="PercentButton_Clicked" Grid.Row="0" Grid.Column="0" TextColor="White" BackgroundColor="#2D2D30" />
+                <Button Text="CE" x:Name="CEButton" Clicked="CEButton_Clicked" Grid.Row="0" Grid.Column="1" TextColor="White" BackgroundColor="#2D2D30" />
+                <Button Text="C" x:Name="CButton" Clicked="CButton_Clicked" Grid.Row="0" Grid.Column="2" TextColor="White" BackgroundColor="#2D2D30" />
+                <Button Text="←" x:Name="BackspaceButton" Clicked="BackspaceButton_Clicked" Grid.Row="0" Grid.Column="3" TextColor="White" BackgroundColor="#2D2D30" />
 
+                <!-- İkinci Satır -->
+                <Button Text="1/x" x:Name="OneOverXButton" Clicked="OneOverXButton_Clicked" Grid.Row="1" Grid.Column="0" TextColor="White" BackgroundColor="#2D2D30" />
+                <Button Text="x²" x:Name="SquareButton" Clicked="SquareButton_Clicked" Grid.Row="1" Grid.Column="1" TextColor="White" BackgroundColor="#2D2D30" />
+                <Button Text="√" x:Name="SqrtButton" Clicked="SqrtButton_Clicked" Grid.Row="1" Grid.Column="2" TextColor="White" BackgroundColor="#2D2D30" />
+                <Button Text="÷" x:Name="DivideButton" Clicked="DivideButton_Clicked" Grid.Row="1" Grid.Column="3" TextColor="White" BackgroundColor="#FFA500" />
 
+                <!-- Diğer Satırlar (Sayılar ve İşlemler) -->
+                <Button Text="7" x:Name="DigitSeven" Clicked="Digit_Clicked" Grid.Row="2" Grid.Column="0" TextColor="White" BackgroundColor="#333333" />
+                <Button Text="8" x:Name="DigitEight" Clicked="Digit_Clicked" Grid.Row="2" Grid.Column="1" TextColor="White" BackgroundColor="#333333" />
+                <Button Text="9" x:Name="DigitNine" Clicked="Digit_Clicked" Grid.Row="2" Grid.Column="2" TextColor="White" BackgroundColor="#333333" />
+                <Button Text="×" x:Name="MultiplyButton" Clicked="MultiplyButton_Clicked" Grid.Row="2" Grid.Column="3" TextColor="White" BackgroundColor="#FFA500" />
 
-                <Button Text="4" x:Name="DigitFour"  Clicked="Digit_Clicked" Grid.Row="1" ></Button>
-                <Button Text="5" x:Name="DigitFive"  Clicked="Digit_Clicked" Grid.Row="1" Grid.Column="1" ></Button>
-                <Button Text="6" x:Name="DigitSix"  Clicked="Digit_Clicked" Grid.Row="1" Grid.Column="2" ></Button>
+                <Button Text="4" x:Name="DigitFour" Clicked="Digit_Clicked" Grid.Row="3" Grid.Column="0" TextColor="White" BackgroundColor="#333333" />
+                <Button Text="5" x:Name="DigitFive" Clicked="Digit_Clicked" Grid.Row="3" Grid.Column="1" TextColor="White" BackgroundColor="#333333" />
+                <Button Text="6" x:Name="DigitSix" Clicked="Digit_Clicked" Grid.Row="3" Grid.Column="2" TextColor="White" BackgroundColor="#333333" />
+                <Button Text="-" x:Name="SubtractButton" Clicked="SubtractButton_Clicked" Grid.Row="3" Grid.Column="3" TextColor="White" BackgroundColor="#FFA500" />
 
+                <Button Text="1" x:Name="DigitOne" Clicked="Digit_Clicked" Grid.Row="4" Grid.Column="0" TextColor="White" BackgroundColor="#333333" />
+                <Button Text="2" x:Name="DigitTwo" Clicked="Digit_Clicked" Grid.Row="4" Grid.Column="1" TextColor="White" BackgroundColor="#333333" />
+                <Button Text="3" x:Name="DigitThree" Clicked="Digit_Clicked" Grid.Row="4" Grid.Column="2" TextColor="White" BackgroundColor="#333333" />
+                <Button Text="+" x:Name="AddButton" Clicked="AddButton_Clicked" Grid.Row="4" Grid.Column="3" TextColor="White" BackgroundColor="#FFA500" />
 
-                <Button Text="1" x:Name="DigitOne" Clicked="Digit_Clicked"  Grid.Row="2" ></Button>
-                <Button Text="2" x:Name="DigitTwo"  Clicked="Digit_Clicked" Grid.Row="2" Grid.Column="1" ></Button>
-                <Button Text="3" x:Name="DigitThree" Clicked="Digit_Clicked"  Grid.Row="2" Grid.Column="2" ></Button>
-
-
-                <Button Text="0" x:Name="DigitZero"  Clicked="Digit_Clicked" Grid.Row="3" ></Button>
-                <Button Text="=" x:Name="EqualButton" Clicked="EqualButton_Clicked"  Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2" ></Button>
-                
-                    <Button Grid.Row="0" Grid.Column="3"
-                        x:Name="AddButton" Text="+" Clicked="AddButton_Clicked"
-                        VerticalOptions="Fill" />
-                    <Button  Grid.Row="1" Grid.Column="3"
-                      x:Name="SubtractButton"
-                      Text="-" 
-           Clicked="SubtractButton_Clicked"
-                        VerticalOptions="Fill" />
-                    <Button  Grid.Row="2" Grid.Column="3"
-                        x:Name="MultiplyButton"   Text="X"   Clicked="MultiplyButton_Clicked"
-                        VerticalOptions="Fill" />
-
-                <Button  Grid.Row="3" Grid.Column="3"
-         x:Name="DivideButton"     Text="/"        Clicked="DivideButton_Clicked"
-         VerticalOptions="Fill" />
-
-                <Button Text="CE" x:Name="CEButton" Clicked="CEButton_Clicked"  Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" ></Button>
-                <Button Text="C" x:Name="CButton" Clicked="CButton_Clicked"  Grid.Row="4" Grid.Column="2" Grid.ColumnSpan="2" ></Button>
-
+                <Button Text="±" x:Name="PlusMinusButton" Clicked="PlusMinusButton_Clicked" Grid.Row="5" Grid.Column="0" TextColor="White" BackgroundColor="#2D2D30" />
+                <Button Text="0" x:Name="DigitZero" Clicked="Digit_Clicked" Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="1" TextColor="White" BackgroundColor="#333333" />
+                <Button Text="." x:Name="DecimalButton" Clicked="DecimalButton_Clicked" Grid.Row="5" Grid.Column="2" TextColor="White" BackgroundColor="#333333" />
+                <Button Text="=" x:Name="EqualButton" Clicked="EqualButton_Clicked" Grid.Row="5" Grid.Column="3" TextColor="White" BackgroundColor="#FFA500" />
             </Grid>
-            
-            
-            
-            <HorizontalStackLayout Spacing="20">
-                
-            </HorizontalStackLayout>
-           
-            <Label
-                x:Name="Result"
-                Text=""
-                 />
-
-          
-
-            
         </VerticalStackLayout>
     </ScrollView>
-
 </ContentPage>
