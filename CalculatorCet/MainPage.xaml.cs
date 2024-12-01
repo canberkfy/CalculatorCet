@@ -12,7 +12,7 @@ namespace CalculatorCet
         }
 
         double FirstNumber = 0;
-        double memory = 0; // Hafıza
+        double memory = 0;
         bool isFirstNumberAfterOperator = true;
         Operator PreviousOperator = Operator.None;
 
@@ -62,7 +62,7 @@ namespace CalculatorCet
                         if (currentNumber != 0)
                             FirstNumber /= currentNumber;
                         else
-                            Display.Text = "Error"; // Sıfıra bölme hatası
+                            Display.Text = "Error";
                         break;
                 }
                 isFirstNumberAfterOperator = true;
@@ -96,23 +96,23 @@ namespace CalculatorCet
         {
             var entry = sender as Entry;
 
-            // Geçerli karakterler (rakamlar, işlem sembolleri ve ondalık ayracı)
+
             string validCharacters = "0123456789+-*/.,";
             string newText = string.Concat(e.NewTextValue.Where(c => validCharacters.Contains(c)));
 
-            // Eğer kullanıcı yeni bir sayı girdiğinde ekrandaki değer "0" ise, "0"ı sil
+
             if (e.OldTextValue == "0" && validCharacters.Contains(newText))
             {
-                newText = newText.TrimStart('0'); // Sadece baştaki '0'ı kaldır
+                newText = newText.TrimStart('0');
             }
 
-            // Ondalık ayracı sadece bir kere olmalı
+
             if (newText.Contains(".") && newText.Contains(","))
             {
-                newText = newText.Replace(",", ""); // Sadece bir ondalık ayracı bırakın
+                newText = newText.Replace(",", "");
             }
 
-            // Girişteki değişikliklerin geçerli olduğundan emin olun
+
             if (newText != e.NewTextValue)
             {
                 entry.Text = newText;
@@ -172,7 +172,7 @@ namespace CalculatorCet
             {
                 if (value < 0)
                 {
-                    Display.Text = "Error"; // Negatif karekök hatası
+                    Display.Text = "Error";
                 }
                 else
                 {
@@ -189,7 +189,7 @@ namespace CalculatorCet
         {
             if (double.TryParse(Display.Text, out double value))
             {
-                Display.Text = Math.Pow(value, 2).ToString(); // Kare alma
+                Display.Text = Math.Pow(value, 2).ToString();
             }
             else
             {
@@ -203,7 +203,7 @@ namespace CalculatorCet
             {
                 if (value == 0)
                 {
-                    Display.Text = "Error"; // Sıfıra bölme hatası
+                    Display.Text = "Error";
                 }
                 else
                 {
@@ -226,19 +226,19 @@ namespace CalculatorCet
 
         private void MCButton_Clicked(object sender, EventArgs e)
         {
-            memory = 0; // Hafıza temizleme
+            memory = 0;
         }
 
         private void MRButton_Clicked(object sender, EventArgs e)
         {
-            Display.Text = memory.ToString(); // Hafızadaki değeri getir
+            Display.Text = memory.ToString();
         }
 
         private void MPlusButton_Clicked(object sender, EventArgs e)
         {
             if (double.TryParse(Display.Text, out double value))
             {
-                memory += value; // Hafızaya ekle
+                memory += value;
             }
         }
 
@@ -246,7 +246,7 @@ namespace CalculatorCet
         {
             if (double.TryParse(Display.Text, out double value))
             {
-                memory -= value; // Hafızadan çıkar
+                memory -= value;
             }
         }
 
@@ -254,10 +254,10 @@ namespace CalculatorCet
         {
             if (double.TryParse(Display.Text, out double value))
             {
-                memory = value; // Hafızaya kaydet
+                memory = value;
             }
         }
     }
 
-    
+
 }
